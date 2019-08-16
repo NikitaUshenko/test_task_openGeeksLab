@@ -1,6 +1,8 @@
+@import "styles/table.css";
+@import "styles/styles.css";
+
 .active {
   pointer-events: none;
   cursor: default;
   text-decoration: none;
-  color: black;
 }

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import Article from './Article';
+import AdminArticle from './AdminArticle';
 
-const Articles = ({ categories }) => {
+const AdminArticles = ({ categories }) => {
   const [articles, setArticles] = useState([]);
   const [article, setArticle] = useState({ title: '', description: '', categoryId: '', text: '' });
 
@@ -32,7 +32,7 @@ const Articles = ({ categories }) => {
       case 'description':
         setArticle({...article, description: value});
         break;
-      case 'parentId':
+      case 'categoryId':
         setArticle({ ...article, categoryId: value });
         break;
       default:
@@ -74,21 +74,11 @@ const Articles = ({ categories }) => {
   return (
     <>
       <h1>Articles</h1>
-      <table>
-        <tbody>
-          {
-            articles.map(article => (
-              <tr key={article._id}>
-                <Article article={article} categories={categories} handleDelete={handleDelete} update={handleUpdate} />
-              </tr>))
-          }
-        </tbody>
-      </table>
       <form onSubmit={event => handleSubmit(event)}>
-        <input type="text" name="title" value={article.title} onChange={event => handleChange(event)} required />
-        <textarea type="text" name="text" value={article.text} onChange={event => handleChange(event)} required />
-        <textarea type="text" name="description" value={article.description} onChange={event => handleChange(event)} required />
-        <select name="parentId" onChange={(event) => handleChange(event)} value={article.categoryId} required>
+        <input type="text" name="title" className="title" placeholder="Enter title" value={article.title} onChange={event => handleChange(event)} required />
+        <textarea type="text" name="text" className="text" placeholder="Enter text" rows="7" value={article.text} onChange={event => handleChange(event)} required />
+        <textarea type="text" name="description" className="description" placeholder="Enter description" rows="7" value={article.description} onChange={event => handleChange(event)} required />
+        <select name="categoryId" className="category" onChange={(event) => handleChange(event)} value={article.categoryId} required>
           <option value="">No category</option>
           {
             categories.map(cat => <option value={cat._id} key={cat._id}>{cat.title}</option>)
@@ -96,8 +86,18 @@ const Articles = ({ categories }) => {
         </select>
         <button type="submit">add</button>
       </form>
+      <table>
+        <tbody>
+          {
+            articles.map(article => (
+              <tr key={article._id}>
+                <AdminArticle article={article} categories={categories} handleDelete={handleDelete} update={handleUpdate} />
+              </tr>))
+          }
+        </tbody>
+      </table>
     </>
   );
 };
 
-export default Articles;
+export default AdminArticles;

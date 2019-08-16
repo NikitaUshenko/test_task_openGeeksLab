@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { NavLink, Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
 import AdminPanel from './components/AdminPanel';
@@ -11,8 +11,8 @@ import Recipe from './components/RecipePage';
 function App() {
     return (
     <div>
-      <NavLink to="/" exact>Home page</NavLink>
-      <NavLink to="/admin">Admin panel</NavLink>
+      <NavLink to="/" className="main-nav" exact>Home page</NavLink>
+      <NavLink to="/admin" className="main-nav">Admin panel</NavLink>
       <Switch>
         <Route path="/categories/:id" render={({match}) => <CategoryPage match={match}/>}/>
         <Route path="/categories/" render={() => <CategoriesPage />}/>

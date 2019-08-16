@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Route } from 'react-router-dom';
-import Receipts from './Receipts';
-import Articles from './Articles';
-import Categories from './Categories';
+import AdminReceipts from './AdminReceipts';
+import AdminArticles from './AdminArticles';
+import AdminCategories from './AdminCategories';
 import axios from "axios";
 
 const AdminPanel = () => {
@@ -28,9 +28,9 @@ const AdminPanel = () => {
       <NavLink to="/admin/categories">All Categories</NavLink>
       <NavLink to="/admin/articles">All Articles</NavLink>
 
-      <Route path="/admin/receipts" render={() => <Receipts categories={categories} />} />
-      <Route path="/admin/categories" render={() => <Categories categories={categories}/>} />
-      <Route path="/admin/articles" render={() => <Articles categories={categories} setCategories={setCategories} />} />
+      <Route path="/admin/receipts" render={() => <AdminReceipts categories={categories} />} />
+      <Route path="/admin/categories" render={() => <AdminCategories categories={categories}/>} />
+      <Route path="/admin/articles" render={() => <AdminArticles categories={categories} setCategories={setCategories} />} />
     </>
   )
 };

@@ -28,9 +28,9 @@ const Article = ({ match }) => {
   return (
     <>
       <h1>{article.title}</h1>
-      <NavLink to={`/categories`} exact>All categories</NavLink>
+      <NavLink to={`/categories`} exact className="all-categories">All categories</NavLink>
       {
-        parents.map(parent => <NavLink to={`/categories/${parent._id}`} key={parent._id}>{parent.title}</NavLink>)
+        parents.map(parent => <NavLink to={`/categories/${parent._id}`} className="breadcrumb" key={parent._id}>{parent.title}</NavLink>)
       }
         <p>{article.text}</p>
     </>

@@ -1,28 +1,20 @@
 import React, {  useState } from 'react';
 import axios from 'axios';
 
-import Category from './Category';
+import AdminCategory from './AdminCategory';
 
-const Categories = ({ categories }) => {
+const AdminCategories = ({ categories }) => {
   const [category, setCategory] = useState( { title: '', parentId: '' });
-  const [error, setError] = useState(false);
 
   const handleAdd = (event) => {
     event.preventDefault();
 
-    if (!event.target.checkValidity()) {
-      setError(true);
-      return;
-    }
-
     const postUrl = 'https://test-task-server.herokuapp.com/api/v1/category/create';
     if(category.parentId) {
-      axios.post(postUrl, category)
-        .catch(() => setError(true));
+      axios.post(postUrl, category);
       setCategory({ title: '', parentId: '' });
     } else {
-      axios.post(postUrl, { ...category, parentId: null })
-        .catch(() => setError(true));
+      axios.post(postUrl, { ...category, parentId: null });
       setCategory({ title: '', parentId: '' });
     }
   };
@@ -39,7 +31,6 @@ const Categories = ({ categories }) => {
   };
 
   const handleChangeTitle = (event) => {
-    setError(false);
     setCategory({ ...category, title: event.target.value });
   };
 
@@ -52,23 +43,10 @@ const Categories = ({ categories }) => {
   return (
     <>
       <h1>Categories</h1>
-      <table>
-        <tbody>
-          <tr>
-            <th>Title</th>
-            <th>Parent</th>
-          </tr>
-          {
-            categories.map(category => (
-              <tr key={category._id}>
-                <Category category={category} categories={categories} handleDelete={handleDelete} update={update}/>
-              </tr>))
-          }
-        </tbody>
-      </table>
       <form onSubmit={(event) => handleAdd(event)}>
         <input
-          className={error ? 'error' : ''}
+          className="title"
+          placeholder="Enter title"
           type="text"
           name="title"
           value={category.title}
@@ -83,8 +61,22 @@ const Categories = ({ categories }) => {
         </select>
         <button type="submit">add</button>
       </form>
+      <table>
+        <tbody>
+          <tr>
+            <th>Title</th>
+            <th>Parent</th>
+          </tr>
+          {
+            categories.map(category => (
+              <tr key={category._id}>
+                <AdminCategory category={category} categories={categories} handleDelete={handleDelete} update={update}/>
+              </tr>))
+          }
+        </tbody>
+      </table>
     </>
   );
 };
 
-export default Categories;
+export default AdminCategories;

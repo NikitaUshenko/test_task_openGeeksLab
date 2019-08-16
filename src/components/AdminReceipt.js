@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Receipt = ({ receipt, categories, handleDelete, update }) => {
+const AdminReceipt = ({ receipt, categories, handleDelete, update }) => {
   const [edit, setEdit] = useState(
     {
       editable: false,
@@ -8,7 +8,6 @@ const Receipt = ({ receipt, categories, handleDelete, update }) => {
       categoryId: receipt.categoryId,
       id: receipt._id,
       text: receipt.text,
-      description: receipt.description,
     }
   );
 
@@ -31,27 +30,30 @@ const Receipt = ({ receipt, categories, handleDelete, update }) => {
   };
 
   const handleUpdate = () => {
-    update(edit);
-    setEdit({...edit, editable: false})
+    const { title, text, categoryId } = edit;
+    if(title && text && categoryId) {
+      update(edit);
+      setEdit({...edit, editable: false})
+    }
   };
 
   return(
     <>
-      <td>
+      <td className="title">
         {
           edit.editable
-            ? <input type="text" name="title" value={edit.title} onChange={(event) => handleChange(event)} />
+            ? <input type="text" className="title" name="title" value={edit.title} onChange={(event) => handleChange(event)} />
             : receipt.title
         }
       </td>
-      <td>
+      <td className="text">
         {
           edit.editable
-            ? <textarea name="text" cols="30" rows="5" value={edit.text} onChange={(event) => handleChange(event)} />
+            ? <textarea name="text" className="text" placeholder="Enter text" rows="7" value={edit.text} onChange={(event) => handleChange(event)} />
             : receipt.text
         }
       </td>
-      <td>
+      <td className="category">
         {
           edit.editable
             ? (
@@ -66,22 +68,29 @@ const Receipt = ({ receipt, categories, handleDelete, update }) => {
 
         }
       </td>
-      <td>
+      <td className="edit">
         {
           edit.editable
             ? (
               <>
-                <button onClick={() => handleUpdate()}>Approve</button>
-                <button onClick={() => setEdit({ ...edit, editable: false })}>Discard</button>
+                <button onClick={() => handleUpdate()}>
+                  Approve
+                </button>
+                <button onClick={() => setEdit({ ...edit, editable: false })}>
+                  Discard
+                </button>
               </>
             )
-            : <button onClick={() => setEdit({...edit, editable: true})}>Update</button>
+            : (
+              <>
+                <button onClick={() => setEdit({...edit, editable: true})}>Update</button>
+                <button onClick={() => handleDelete(receipt._id)}>Delete</button>
+              </>
+            )
         }
-
       </td>
-      <td><button onClick={() => handleDelete(receipt._id)}>Delete</button></td>
     </>
   );
 };
 
-export default Receipt;
+export default AdminReceipt;

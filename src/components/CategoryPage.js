@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import { NavLink, Route } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 
 const CategoryPage = ({ match }) => {
@@ -44,23 +44,40 @@ const CategoryPage = ({ match }) => {
   return(
     <>
       <h2>Links</h2>
-      <NavLink to={`/categories`} exact>All categories</NavLink>
+      <NavLink to={`/categories`} className="all-categories" exact>All categories</NavLink>
       {
-        parents.map(parent => <NavLink to={`/categories/${parent._id}`} key={parent._id}>{parent.title}</NavLink>)
+        parents.map(parent => <NavLink to={`/categories/${parent._id}`} className="breadcrumb" key={parent._id}>{parent.title}</NavLink>)
       }
-      <h2>Sub cats</h2>
+      <h2>Sub categories</h2>
       {
         categories
           .filter(cat => cat.parentId === match.params.id)
-          .map(child => <NavLink key={child._id} to={`/categories/${child._id}`}><li>{child.title}</li></NavLink>)
+          .map(child => <NavLink key={child._id} className="sub-category" to={`/categories/${child._id}`}><li>{child.title}</li></NavLink>)
       }
       <h2>Articles</h2>
       {
-        articles.map(article => <NavLink to={`/articles/${article._id}`} key={article._id}><li>{article.title}</li></NavLink>)
+        articles.map(
+          article => (
+            <NavLink to={`/articles/${article._id}`} key={article._id} className="article-link">
+              <li>
+                <h3>{article.title}</h3>
+                <p>{article.description}</p>
+              </li>
+            </NavLink>
+          )
+        )
       }
       <h2>Recipes</h2>
       {
-        recipes.map(recipe => <NavLink to={`/recipes/${recipe._id}`} key={recipe._id}><li>{recipe.title}</li></NavLink>)
+        recipes.map(
+          recipe => (
+            <NavLink to={`/recipes/${recipe._id}`} key={recipe._id} className="article-link">
+              <li>
+                <h3>{recipe.title}</h3>
+              </li>
+            </NavLink>
+          )
+        )
       }
     </>
   );

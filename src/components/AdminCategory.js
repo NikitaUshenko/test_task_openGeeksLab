@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-const Category = ({ categories, category, handleDelete, update }) => {
+const AdminCategory = ({ categories, category, handleDelete, update }) => {
   const [edit, setEdit] = useState({ editable: false, title: category.title, parentId: category.parentId || '', id: category._id });
 
   useEffect(() => {
@@ -23,24 +23,27 @@ const Category = ({ categories, category, handleDelete, update }) => {
   };
 
   const handleUpdate = () => {
-    update(edit);
-    setEdit({...edit, editable: false})
+    const { title } = edit;
+    if(title) {
+      update(edit);
+      setEdit({...edit, editable: false})
+    }
   };
 
   return (
     <>
-      <td>
+      <td className="title">
         {
           edit.editable
-            ? <input type="text" value={edit.title} name="title" onChange={(event) => handleChange(event)}/>
+            ? <input type="text" value={edit.title} name="title" className="title" onChange={(event) => handleChange(event)}/>
             : category.title
         }
       </td>
-      <td>
+      <td className="category">
         {
           edit.editable
             ? (
-              <select name="parentId" onChange={(event) => handleChange(event)} value={edit.parentId}>
+              <select name="parentId" className="category" onChange={(event) => handleChange(event)} value={edit.parentId}>
                 <option value="">No parent</option>
                 {
                   categories.map(cat => <option value={cat._id} key={cat._id}>{cat.title}</option>)
@@ -50,7 +53,7 @@ const Category = ({ categories, category, handleDelete, update }) => {
             : category.parentId && categories.filter(cat => cat._id === category.parentId).map(cat => cat.title)
         }
       </td>
-      <td>
+      <td className="edit">
         {
           edit.editable
             ? (
@@ -79,7 +82,7 @@ const Category = ({ categories, category, handleDelete, update }) => {
   );
 };
 
-Category.propTypes = {
+AdminCategory.propTypes = {
   category: PropTypes.shape({
     title: PropTypes.string.isRequired,
     parentId: PropTypes.string,
@@ -87,4 +90,4 @@ Category.propTypes = {
   }).isRequired
 };
 
-export default Category;
+export default AdminCategory;

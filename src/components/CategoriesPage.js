@@ -1,8 +1,6 @@
 import React, { useState,useEffect } from 'react';
-import { NavLink, Route } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
-
-import CategoryPage from './CategoryPage';
 
 const CategoriesPage = () => {
   const [categories, setCategories] = useState([]);
@@ -24,7 +22,9 @@ const CategoriesPage = () => {
       <h1>Categories</h1>
       <ul>
         {
-          categories.map(cat => !cat.parentId && <li key={cat._id}><NavLink to={`/categories/${cat._id}`}>{cat.title}</NavLink></li>)
+          categories.map(
+            cat => !cat.parentId && <li key={cat._id}><NavLink to={`/categories/${cat._id}`} className={'category-btn'}>{cat.title}</NavLink></li>
+          )
         }
       </ul>
     </>

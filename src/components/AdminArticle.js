@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Article = ({ article, categories, handleDelete, update }) => {
+const AdminArticle = ({ article, categories, handleDelete, update }) => {
   const [edit, setEdit] = useState(
       {
         editable: false,
@@ -34,34 +34,37 @@ const Article = ({ article, categories, handleDelete, update }) => {
   };
 
   const handleUpdate = () => {
-    update(edit);
-    setEdit({...edit, editable: false})
+    const { title, text, categoryId, description } = edit;
+    if(title && text && categoryId && description) {
+      update(edit);
+      setEdit({...edit, editable: false})
+    }
   };
 
   return(
     <>
-      <td>
+      <td className="title">
         {
           edit.editable
-            ? <input type="text" name="title" value={edit.title} onChange={(event) => handleChange(event)} />
+            ? <input type="text" className="title" name="title" value={edit.title} onChange={(event) => handleChange(event)} />
             : article.title
         }
       </td>
-      <td>
+      <td className="text">
         {
           edit.editable
-            ? <textarea name="description" cols="30" rows="5" value={edit.description} onChange={(event) => handleChange(event)} />
-            : article.description
-        }
-      </td>
-      <td>
-        {
-          edit.editable
-            ? <textarea name="text" cols="30" rows="5" value={edit.text} onChange={(event) => handleChange(event)} />
+            ? <textarea name="text" className="text" placeholder="Enter text" rows="7" value={edit.text} onChange={(event) => handleChange(event)} />
             : article.text
         }
       </td>
-      <td>
+      <td className="description">
+        {
+          edit.editable
+            ? <textarea name="description" className="description" placeholder="Enter description" rows="7" value={edit.description} onChange={(event) => handleChange(event)} />
+            : article.description
+        }
+      </td>
+      <td className="category">
         {
           edit.editable
             ? (
@@ -76,22 +79,29 @@ const Article = ({ article, categories, handleDelete, update }) => {
 
         }
       </td>
-      <td>
+      <td className="edit">
         {
           edit.editable
             ? (
               <>
-                <button onClick={() => handleUpdate()}>Approve</button>
-                <button onClick={() => setEdit({ ...edit, editable: false })}>Discard</button>
+                <button onClick={() => handleUpdate()}>
+                  Approve
+                </button>
+                <button onClick={() => setEdit({ ...edit, editable: false })}>
+                  Discard
+                </button>
               </>
             )
-            : <button onClick={() => setEdit({...edit, editable: true})}>Update</button>
+            : (
+              <>
+                <button onClick={() => setEdit({...edit, editable: true})}>Update</button>
+                <button onClick={() => handleDelete(article._id)}>Delete</button>
+              </>
+            )
         }
-
       </td>
-      <td><button onClick={() => handleDelete(article._id)}>Delete</button></td>
     </>
   );
 };
 
-export default Article;
+export default AdminArticle;

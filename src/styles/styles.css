@@ -1,0 +1,90 @@
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  padding: 0;
+}
+
+.main-nav {
+  display: inline-block;
+  margin-right: 25px;
+  width: 150px;
+  line-height: 50px;
+  text-align: center;
+  background-color: deepskyblue;
+  color: white;
+}
+
+.main-nav.active {
+  background-color: cornflowerblue;
+}
+
+.all-categories {
+  display: block;
+  margin-right: 25px;
+  width: 150px;
+  line-height: 50px;
+  text-align: center;
+  background-color: deepskyblue;
+  color: white;
+  margin-bottom: 25px;
+}
+
+.category-btn {
+  display: inline-block;
+  margin-right: 25px;
+  width: 150px;
+  line-height: 40px;
+  text-align: center;
+  background-color: deepskyblue;
+  color: white;
+  margin-bottom: 25px;
+}
+
+.breadcrumb {
+  display: inline-block;
+  margin-right: 25px;
+  width: 150px;
+  line-height: 20px;
+  text-align: center;
+  background-color: deepskyblue;
+  border-top-right-radius: 100%;
+  border-bottom-right-radius: 100%;
+  color: white;
+  margin-bottom: 25px;
+}
+
+.breadcrumb.active {
+  background-color: transparent;
+  color: deepskyblue;
+  border: 1px solid deepskyblue;
+}
+
+.sub-category {
+  display: inline-block;
+  margin-right: 25px;
+  width: 150px;
+  line-height: 20px;
+  text-align: center;
+  background-color: deepskyblue;
+  border-radius: 100%;
+  color: white;
+  margin-bottom: 25px;
+}
+
+.article-link {
+  text-decoration: none;
+}
+
+.article-link li {
+  border: 1px solid fuchsia;
+  padding-left: 25px;
+  margin-bottom: 10px;
+}
+
+.article-link h3 {
+  color: deepskyblue;
+}
