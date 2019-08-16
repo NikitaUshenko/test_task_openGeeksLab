@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/test_task_openGeeksLab/static/css/main.67a63642.chunk.css",
-    "main.js": "/test_task_openGeeksLab/static/js/main.fbdeb5b1.chunk.js",
-    "main.js.map": "/test_task_openGeeksLab/static/js/main.fbdeb5b1.chunk.js.map",
+    "main.css": "/test_task_openGeeksLab/static/css/main.4be8cd30.chunk.css",
+    "main.js": "/test_task_openGeeksLab/static/js/main.1035896a.chunk.js",
+    "main.js.map": "/test_task_openGeeksLab/static/js/main.1035896a.chunk.js.map",
     "runtime~main.js": "/test_task_openGeeksLab/static/js/runtime~main.0523aeff.js",
     "runtime~main.js.map": "/test_task_openGeeksLab/static/js/runtime~main.0523aeff.js.map",
     "static/js/2.8662aadb.chunk.js": "/test_task_openGeeksLab/static/js/2.8662aadb.chunk.js",
     "static/js/2.8662aadb.chunk.js.map": "/test_task_openGeeksLab/static/js/2.8662aadb.chunk.js.map",
     "index.html": "/test_task_openGeeksLab/index.html",
-    "precache-manifest.9d39d7279b2b4bac93dede649f50a4d2.js": "/test_task_openGeeksLab/precache-manifest.9d39d7279b2b4bac93dede649f50a4d2.js",
+    "precache-manifest.aeb15a84d46b372b50f56de3a814a1cd.js": "/test_task_openGeeksLab/precache-manifest.aeb15a84d46b372b50f56de3a814a1cd.js",
     "service-worker.js": "/test_task_openGeeksLab/service-worker.js",
-    "static/css/main.67a63642.chunk.css.map": "/test_task_openGeeksLab/static/css/main.67a63642.chunk.css.map"
+    "static/css/main.4be8cd30.chunk.css.map": "/test_task_openGeeksLab/static/css/main.4be8cd30.chunk.css.map"
   }
 }
