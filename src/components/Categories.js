@@ -18,12 +18,10 @@ const Categories = ({ categories }) => {
     const postUrl = 'https://test-task-server.herokuapp.com/api/v1/category/create';
     if(category.parentId) {
       axios.post(postUrl, category)
-        .then(res => console.log(res))
         .catch(() => setError(true));
       setCategory({ title: '', parentId: '' });
     } else {
       axios.post(postUrl, { ...category, parentId: null })
-        .then(res => console.log(res))
         .catch(() => setError(true));
       setCategory({ title: '', parentId: '' });
     }
@@ -32,14 +30,12 @@ const Categories = ({ categories }) => {
   const handleDelete = id => {
     const deleteUrl = `https://test-task-server.herokuapp.com/api/v1/category/${id}`;
     axios.delete(deleteUrl)
-      .then(res => console.log(res));
   };
 
   const update = obj => {
     const { id, parentId, title } = obj;
     const updateUrl = 'https://test-task-server.herokuapp.com/api/v1/category/update';
     axios.put(updateUrl, { _id: id, parentId, title })
-      .then(res => console.log(res));
   };
 
   const handleChangeTitle = (event) => {

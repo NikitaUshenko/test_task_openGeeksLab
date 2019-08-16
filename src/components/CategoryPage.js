@@ -31,6 +31,13 @@ const CategoryPage = ({ match }) => {
           setRecipes(recipes);
         }
       });
+    axios.get(`https://test-task-server.herokuapp.com/api/v1/article/byCategory/${match.params.id}`)
+      .then(res => {
+        const articles = res.data;
+        if(isSubscribed) {
+          setArticles(articles);
+        }
+      });
     return () => isSubscribed = false;
   });
 
@@ -49,11 +56,11 @@ const CategoryPage = ({ match }) => {
       }
       <h2>Articles</h2>
       {
-
+        articles.map(article => <NavLink to={`/articles/${article._id}`} key={article._id}><li>{article.title}</li></NavLink>)
       }
       <h2>Recipes</h2>
       {
-        recipes.map(recipe => <NavLink to={`/recipes/${recipe._id}`}><li>{recipe.title}</li></NavLink>)
+        recipes.map(recipe => <NavLink to={`/recipes/${recipe._id}`} key={recipe._id}><li>{recipe.title}</li></NavLink>)
       }
     </>
   );
